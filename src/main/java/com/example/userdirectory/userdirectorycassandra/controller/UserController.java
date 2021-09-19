@@ -38,6 +38,7 @@ public class UserController {
         return CollectionModel.of(users, linkTo(methodOn(UserController.class).all()).withSelfRel());
     }
 
+    //CREATE
     //Use ResponseEntity to create an HTTP 201 Created status message and return the model-based version of the saved object.
     @PostMapping("/users")
     ResponseEntity<?> newUser(@RequestBody User newUser){
@@ -49,6 +50,7 @@ public class UserController {
                 .body(entityModel);
     }
 
+    //RETRIEVE
     //single item
     @GetMapping("/users/{id}")
     public EntityModel<User> one(@PathVariable Long id) {
@@ -57,6 +59,7 @@ public class UserController {
         return assembler.toModel(user);
     }
 
+    //UPDATE
     @PutMapping("/users/{id}")
     ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id){
 
@@ -64,7 +67,11 @@ public class UserController {
                 .map(user -> {
                     user.setName(newUser.getName());
                     user.setPhoneNumber(newUser.getPhoneNumber());
-                    user.setAddress(newUser.getAddress());
+                    user.setStreet1(newUser.getStreet1());
+                    user.setStreet2(newUser.getStreet2());
+                    user.setCity(newUser.getCity());
+                    user.setState(newUser.getState());
+                    user.setZip(newUser.getZip());
                     return repository.save(user);
                 })
                 .orElseGet(() -> {
@@ -81,6 +88,7 @@ public class UserController {
                 .body(entityModel);
     }
 
+    //DELETE
     //return ResponseEntity of HTTP 204 noContent response
     @DeleteMapping("/users/{id}")
     ResponseEntity<?> deleteUser(@PathVariable Long id){
