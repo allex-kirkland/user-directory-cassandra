@@ -10,7 +10,7 @@ Prerequisites to run program:
 To begin (see Common Docker Commands for command explanations):
 - After installing Docker, run Docker and pull Cassandra. Version as of this writing is 4.0.1.
   - docker pull cassandra:4.0.1
-- run newly installed image
+- inside IDE terminal, enter docker-compose up -d to run docker-compose.yml in detached mode which will create named docker container, and, since it's detached, will allow you to continue to use the IDE terminal.
 - enter into the virtual terminal for the running container using docker exec -it command
 - log into the cqlsh using command:
   - cqlsh 127.0.0.1 -u cassandra -p cassandra
@@ -36,7 +36,9 @@ Common Docker Commands
   - creates a running container of the indicated image in detached mode. output = container id
 - docker run -p####:#### <i><b>image</b></i> (ex: docker run -p9000:9042 cassandra)
   - creates a running container of the indicated image tied to particular ports (hostPort:containerPort)
-- docker stop <i><b>containerId</b></i>
+- docker-compose up -d
+  - starts up a container based on paramters within docker-compose.yml. -d runs in detached mode.
+- docker stop <i><b>containerId</b></i> OR docker-compose stop
   - stops a container
 - docker start <i><b>containerId</b></i>
   - starts a container that already exists.

@@ -8,6 +8,7 @@ class UserDirectoryCassandraApplicationTests {
 
     @Test
     void contextLoads() {
+        //NOTE: Must have Docker container running and have created keyspace for this to pass.
     }
 
 }
