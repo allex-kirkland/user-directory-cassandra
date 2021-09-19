@@ -1,0 +1,27 @@
+cqlsh 127.0.0.1 -u cassandra -p cassandra
+CREATE KEYSPACE UserDirectory WITH replication = {'class': 'SimpleStrategy','replication_factor': '1'};
+USE UserDirectory;
+CREATE TABLE UserDirectory (id int PRIMARY KEY, name text, phoneNumber text, street1 text, street2 text, city text, state text, zip text);
+
+--Confirm table creation
+select * from UserDirectory;
+
+--INSERT data into table
+INSERT into UserDirectory(id, name, phoneNumber, street1, street2, city, state, zip) VALUES (101, 'Bilbo Baggins', '555-123-4567','23 2nd Breakfast Way','','Shire','Middle Earth','13004');
+INSERT into UserDirectory(id, name, phoneNumber, street1, street2, city, state, zip) VALUES (102, 'Mickey Mouse', '657-555-0102','1082 Magic Lane','','Kissimmee','FL','34747');
+INSERT into UserDirectory(id, name, phoneNumber, street1, street2, city, state, zip) VALUES (103, 'James Holden', '787-657-8309','118 Moonwalk Rd','Apt #4','Manchester','NH','03102');
+INSERT into UserDirectory(id, name, phoneNumber, street1, street2, city, state, zip) VALUES (104, 'Jack Sparrow', '485-555-1847','57 Norum Rd','','Miami','FL','12345');
+
+--Confirm sucessful inserts
+select * from UserDirectory;
+
+
+--IF DELETION IS NEEDED
+--DROP TABLE UserDirectory;
+
+--view available keyspaces
+--DESCRIBE KEYSPACES;
+
+--view available tables
+-- DESCRIBE TABLES;
+
